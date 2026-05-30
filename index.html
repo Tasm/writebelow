@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Write Below - Add Text Under a Photo</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#5f7fff">
+  <meta name="description" content="Type text, choose or take a photo, then create one image with the text below it. Everything runs on your device." />
+  <link rel="stylesheet" href="styles.css?v=2026-05-18-2" />
+</head>
+<body>
+  <main class="app-shell">
+    <section class="app-card" aria-labelledby="appTitle">
+      <header class="app-header">
+        <h1 id="appTitle">Write Below</h1>
+        <p>Type your text, add a photo, then create one image with the text below it.</p>
+      </header>
+
+      <form id="createForm" class="create-form">
+        <div class="photo-actions" aria-label="Photo options">
+          <button type="button" id="selectPhotoBtn" class="btn secondary">Select Photo</button>
+          <button type="button" id="takePhotoBtn" class="btn secondary">Take Picture</button>
+        </div>
+
+        <input type="file" id="selectPhotoInput" accept="image/*" hidden />
+        <input type="file" id="takePhotoInput" accept="image/*" capture="environment" hidden />
+
+        <div id="photoPreviewWrap" class="photo-preview-wrap is-empty" aria-live="polite">
+          <img id="photoPreview" alt="Selected photo preview" />
+          <div id="emptyPreview" class="empty-preview">Photo preview will show here</div>
+        </div>
+
+        <label class="field-label" for="textInput">Text to place below the photo</label>
+        <textarea id="textInput" rows="4" placeholder="Type your text here..."></textarea>
+
+        <section class="control-panel is-collapsed" aria-label="Text and image controls">
+          <button type="button" id="optionsToggleBtn" class="options-toggle" aria-expanded="false" aria-controls="optionsPanelBody">
+            <span>Options</span>
+            <span class="options-toggle-icon" aria-hidden="true">+</span>
+          </button>
+
+          <div id="optionsPanelBody" class="options-panel-body">
+            <div class="control-row">
+              <label class="field-label" for="fontSizeInput">Font Size</label>
+              <input type="number" id="fontSizeInput" min="8" max="300" step="1" value="35" inputmode="numeric" />
+            </div>
+
+            <div class="control-row">
+              <label class="field-label" for="fontStyleInput">Font Style</label>
+              <select id="fontStyleInput" class="control-input">
+                <option value="Arial, Helvetica, sans-serif">Arial</option>
+                <option value="Georgia, serif">Georgia</option>
+                <option value="Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">Impact</option>
+                <option value="Verdana, Geneva, sans-serif">Verdana</option>
+                <option value="'Courier New', Courier, monospace">Courier New</option>
+                <option value="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">System</option>
+              </select>
+            </div>
+
+            <div class="control-row">
+              <label class="field-label" for="fontColorInput">Font Color</label>
+              <div class="color-control">
+                <input type="color" id="fontColorInput" value="#000000" aria-label="Font color" />
+                <input type="text" id="fontColorTextInput" value="#000000" maxlength="7" inputmode="text" aria-label="Font color hex value" />
+              </div>
+            </div>
+
+            <div class="control-row">
+              <div class="field-label">Text Alignment</div>
+              <div class="segmented-control" role="group" aria-label="Text alignment">
+                <button type="button" class="align-btn" data-align="left">Left</button>
+                <button type="button" class="align-btn active" data-align="center">Middle</button>
+                <button type="button" class="align-btn" data-align="right">Right</button>
+              </div>
+            </div>
+
+            <div class="size-header">
+              <div>
+                <div class="field-label">Final Image Size</div>
+                <p>Auto-filled from the selected photo. Change these to resize the final image.</p>
+              </div>
+              <label class="ratio-toggle">
+                <input type="checkbox" id="keepRatioInput" checked />
+                Keep ratio
+              </label>
+            </div>
+
+            <div class="size-grid">
+              <div class="control-row">
+                <label class="field-label" for="imageWidthInput">Width</label>
+                <input type="number" id="imageWidthInput" min="50" step="1" inputmode="numeric" placeholder="Width" />
+              </div>
+              <div class="control-row">
+                <label class="field-label" for="imageHeightInput">Height</label>
+                <input type="number" id="imageHeightInput" min="50" step="1" inputmode="numeric" placeholder="Height" />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <button type="button" id="createBtn" class="btn primary" disabled>Create</button>
+      </form>
+
+      <section id="resultSection" class="result-section" hidden aria-labelledby="resultTitle">
+        <h2 id="resultTitle">Created Image</h2>
+        <canvas id="resultCanvas"></canvas>
+        <button type="button" id="downloadBtn" class="btn download">Download Image</button>
+      </section>
+    </section>
+  </main>
+
+  <script src="script.js?v=2026-05-18-2" defer></script>
+</body>
+</html>
