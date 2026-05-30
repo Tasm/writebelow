@@ -55,7 +55,7 @@
   let selectedImage = null;
   let selectedFileName = "write-below-image.png";
 
-  let selectedTextAlign = "center";
+  let selectedTextAlign = "left";
 
   let originalImageWidth = 0;
   let originalImageHeight = 0;
@@ -65,7 +65,7 @@
   // =========================
   // CONSTANTS
   // =========================
-  const DEFAULT_FONT_SIZE = 12;
+  const DEFAULT_FONT_SIZE = 35;
   const DEFAULT_FONT_COLOR = "#000000";
 
   const SETTINGS_KEY = "writeBelowOptions";
@@ -242,7 +242,7 @@
     }
 
     setSelectedTextAlign(
-      options?.textAlign || "center"
+      options?.textAlign || "left"
     );
 
     updateTextPreviewFont();
